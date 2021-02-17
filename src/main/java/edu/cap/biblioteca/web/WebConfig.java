@@ -14,10 +14,11 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
+	
 	@Bean
 	public LocaleResolver localeResolver() {
 		var sessionLocaleResolver = new SessionLocaleResolver();
@@ -36,7 +37,7 @@ public class WebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registro) {
 		registro.addInterceptor(localeChangeInterceptor());
 	}
-	
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registro) {
 		registro.addViewController("/").setViewName("inicio");

@@ -15,9 +15,9 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <link rel="stylesheet" th:href="@{/css/styles.css}" />
+<link rel="icon" th:href="@{/assets/favicon.png}" type="image/png" />
 
-
-<title>[[ #{layout.titulo} ]] 📖</title>
+<title>[[ #{layout.titulo} ]]</title>
 </head>
 
 <body>
@@ -43,7 +43,8 @@
 					<li sec:authorize="isAnonymous()"><a class="btn btn-info"
 						href="/login">[[ #{accion.login} ]]</a></li>
 					<li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"><a
-						class="btn btn-info mr-2" href="/usuario">[[ #{usuario.dash} ]]</a></li>
+						class="btn btn-info mr-2" href="/usuario">[[ #{usuario.dash}
+							]]</a></li>
 					<li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
 						<form th:action="@{/logout}" method="post">
 							<a href="#" class="btn btn-danger"
@@ -55,16 +56,21 @@
 		</nav>
 	</header>
 
-	<footer th:fragment="footer"
-		style="position: static; bottom: 0; width: 100%; height: 60px; line-height: 60px; background-color: #343a40;">
-		<div class="container">
-			<span class="text-muted">[[ #{layout.footer} ]] <a
-				th:href="@{/(lang=es)}">ES</a> | <a th:href="@{/(lang=en)}">EN</a>.
-			</span>
-		</div>
+	<footer th:fragment="footer">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a target="_blank" class="nav-link"
+					style="display: flex; align-items: center;"
+					href="https://www.github.com/romeramatias"><i
+						class="fab fa-github fa-2x"></i> <span>&nbsp; Romera Matías</span>
+				</a></li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li><a class="nav-link" th:href="@{/(lang=es)}">Español</a></li>
+				<li><a class="nav-link" th:href="@{/(lang=en)}">Ingles</a></li>
+			</ul>
+		</nav>
 	</footer>
-	<p></p>
-
 
 </body>
 </html>
