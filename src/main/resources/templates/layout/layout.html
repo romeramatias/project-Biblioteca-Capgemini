@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:fragment="head">
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}" />
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<link rel="stylesheet" href="css.css" />
+
+<title>Biblioteca Matías 📖</title>
+</head>
+<body>
+
+	<header th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="/"><i class="fas fa-book-open"></i>
+				Biblioteca Matías</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarColor01" aria-controls="navbarColor01"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="/">Inicio
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="/libros">Libros</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/usuario">Data
+							user</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#">Action</a> <a
+								class="dropdown-item" href="#">Another action</a> <a
+								class="dropdown-item" href="#">Something else here</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Separated link</a>
+						</div></li>
+				</ul>
+
+				<span class="navbar-text"> <span
+					sec:authorize="isAnonymous()"> <a href="/login">Login</a></span> <span
+					sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')">
+						<form th:action="@{/logout}" method="post">
+							<a href="#" onclick="this.parentNode.submit();">[[
+								#{accion.logout} ]]</a>
+						</form>
+				</span>
+				</span>
+			</div>
+		</nav>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			User: <span sec:authentication="name"></span> | Roles: <span
+				sec:authentication="principal.authorities"></span>
+		</div>
+	</header>
+
+	<footer th:fragment="footer"
+		style="position: absolute; bottom: 0; width: 100%; height: 60px; line-height: 60px; background-color: #343a40;">
+		<div class="container">
+			<span class="text-muted">[[ #{layout.footer} ]] <a
+				th:href="@{/(lang=es)}">ES</a> | <a th:href="@{/(lang=en)}">EN</a>.
+			</span>
+		</div>
+	</footer>
+	<p></p>
+
+
+</body>
+</html>

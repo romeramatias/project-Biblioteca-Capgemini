@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<title>Index</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<h2>Index</h2>
+
+	<p>[[${usuario.nombre}]]</p>
+	<p th:text="${usuario.apellido}"></p>
+	<p th:text="${usuario.password}"></p>
+
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+</body>
+</html>

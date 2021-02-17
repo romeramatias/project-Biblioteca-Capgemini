@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<title>Libros</title>
+</head>
+<body>
+	<div>
+		<header th:replace="layout/layout :: header"> </header>
+
+		<div class="jumbotron mt-4 mb-4 mx-4 gradient">
+			<h1>[[ #{libro.listado} ]]</h1>
+			<div>
+				<a th:href="@{/libros/agregar}">[[ #{libro.crear} ]]</a>
+			</div>
+
+			<div th:if="${libros != null and !libros.empty}">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">ID Libro</th>
+
+							<th scope="col">[[ #{libro.titulo} ]]</th>
+							<th scope="col">[[ #{libro.editorial} ]]</th>
+							<th scope="col">[[ #{libro.year} ]]</th>
+							<th scope="col">NOMBRE AUTOR</th>
+							<th scope="col">NACIONALIDAD AUTOR</th>
+
+
+							<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
+								#{accion.editar} ]]</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
+								#{accion.eliminar} ]]</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Ver
+								Copias</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="libro : ${libros}">
+							<td th:text="${libro.idLibro}"></td>
+
+							<td th:text="${libro.titulo}"></td>
+							<td th:text="${libro.editorial}"></td>
+							<td th:text="${libro.year}"></td>
+							<td th:text="${libro.autor.nombre}"></td>
+							<td th:text="${libro.autor.nacionalidad}"></td>
+
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								th:href="@{/libros/editar/} + ${libro.idLibro}">[[
+									#{accion.editar} ]]</a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								th:href="@{/eliminar/} + ${libro.idLibro}">Eliminar</a></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+								th:href="@{/libros/} + ${libro.idLibro} + @{/copias}">Ver
+									Copias</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:if="${libros == null or libros.empty}">
+				<p>[[ #{persona.lista-vacia} ]]</p>
+			</div>
+		</div>
+
+		<footer th:replace="layout/layout :: footer"> </footer>
+	</div>
+</body>
+</html>

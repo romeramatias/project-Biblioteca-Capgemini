@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<title>Login</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<h1>Login</h1>
+	<div>
+		<form method="post" th:action="@{/login}">
+			<label for="username">Username</label> <input type="text"
+				name="username" id="username"> <br> <label
+				for="password">Password</label> <input type="password"
+				name="password" id="password"> <br> <input
+				type="submit" value="Login">
+		</form>
+
+	</div>
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+
+
+</body>
+</html>

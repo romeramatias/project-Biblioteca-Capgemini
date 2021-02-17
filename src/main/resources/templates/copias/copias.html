@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<h1>
+		[[ #{copias.listado} ]] <i><span th:text="${libro.titulo}"></span></i>
+	</h1>
+
+	<p>
+		<a th:href="@{/libros/} + ${libro.idLibro} + @{/copias} + @{/agregar}">AGREGAR COPIA</a>
+	</p>
+
+	<div th:if="${copias != null and !copias.empty}">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">[[ #{copias.id} ]]</th>
+					<th scope="col">ESTADO</th>
+					<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
+						#{accion.eliminar} ]]</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="copia : ${copias}">
+					<td th:text="${copia.idCopia}"></td>
+					<td th:text="${copia.estado}"></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+						th:href="@{/libros/} + ${libro.idLibro} + @{/copias/} + ${copia.idCopia} + @{/eliminar}">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:if="${copias == null or copias.empty}">
+		<p>[[ #{persona.lista-vacia} ]]</p>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+</body>
+</html>

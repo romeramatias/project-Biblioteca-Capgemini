@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<title>Modificar Libro</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<h1>Modificar/Agregar libros</h1>
+
+	<h2>Formulario libro</h2>
+	<a th:href="@{/libros}">volver</a>
+
+	<form th:action="@{/libros/guardar}" method="post" th:object="${libro}">
+		<div>
+			<input type="hidden" name="idLibro" th:field="*{idLibro}">
+		</div>
+		<div>
+			<label for="titulo">TITULO:</label> <input type="text" name="titulo"
+				th:field="*{titulo}" />
+		</div>
+		<br>
+		<div>
+			<label for="editorial">EDITORIAL:</label> <input type="text"
+				name="editorial" th:field="*{editorial}">
+
+		</div>
+		<br>
+		<div>
+			<label for="year">ANIO</label> <input type="number" name="year"
+				th:field="*{year}">
+
+		</div>
+		<div>
+			<label for="autor">ID AUTOR</label> <input type="number"
+				name="autor" th:field="*{autor}">
+		</div>
+
+		<div>
+			<select name="tipo">
+				<option
+					th:each="tipoLib : ${T(edu.cap.biblioteca.model.TipoLibro).values()}"
+					th:value="${tipoLib}" th:text="${tipoLib}"></option>
+			</select>
+		</div>
+		<div>
+			<input type="submit" name="guardar" th:value="Guardar">
+		</div>
+	</form>
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+
+</body>
+</html>
