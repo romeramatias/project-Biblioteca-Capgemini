@@ -15,7 +15,7 @@
 	<name>Biblioteca</name>
 	<description>TP Final | Romera Matias | Escuela Java</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
