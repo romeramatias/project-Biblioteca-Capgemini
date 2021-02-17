@@ -33,7 +33,7 @@ public class ControladorLibro {
 		log.info(libros.toString());
 		model.addAttribute("libros", libros);
 
-		return "/libros/libros";
+		return "libros/libros";
 	}
 
 	@GetMapping("/libros/agregar")
