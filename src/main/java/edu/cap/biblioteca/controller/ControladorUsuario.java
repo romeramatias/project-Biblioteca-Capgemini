@@ -26,9 +26,8 @@ public class ControladorUsuario {
 		log.info("Index - Inicio Controller");
 		log.info("Usuario logeado" + user);
 
-		// Buscar los roles para segun que rol mostrar distinto html
 		// El de admin que le muestre un dashboard de todo
-		// y el de user algo mas amistoso, para solicitar prestamos, ver estado de
+		// y el de user algo para solicitar prestamos, ver estado de
 		// cuenta
 		// ver los libros
 		//var roles = user.getAuthorities();
@@ -38,6 +37,6 @@ public class ControladorUsuario {
 		var usuario = this.usuarioService.buscarUsuario(user.getUsername());
 		model.addAttribute("usuario", usuario);
 
-		return "index";
+		return "usuarios/user-data";
 	}
 }

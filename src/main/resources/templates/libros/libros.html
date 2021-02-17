@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 <head th:replace="layout/layout :: head">
+
 <title>Libros</title>
 </head>
 <body>
@@ -18,15 +19,12 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th scope="col">ID Libro</th>
-
+							<th scope="col">[[ #{libro.id} ]]</th>
 							<th scope="col">[[ #{libro.titulo} ]]</th>
 							<th scope="col">[[ #{libro.editorial} ]]</th>
 							<th scope="col">[[ #{libro.year} ]]</th>
-							<th scope="col">NOMBRE AUTOR</th>
-							<th scope="col">NACIONALIDAD AUTOR</th>
-
-
+							<th scope="col">[[ #{autor.nombre} ]]</th>
+							<th scope="col">[[ #{autor.pais} ]]</th>
 							<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
 								#{accion.editar} ]]</th>
 							<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
@@ -38,13 +36,11 @@
 					<tbody>
 						<tr th:each="libro : ${libros}">
 							<td th:text="${libro.idLibro}"></td>
-
 							<td th:text="${libro.titulo}"></td>
 							<td th:text="${libro.editorial}"></td>
 							<td th:text="${libro.year}"></td>
 							<td th:text="${libro.autor.nombre}"></td>
 							<td th:text="${libro.autor.nacionalidad}"></td>
-
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
 								th:href="@{/libros/editar/} + ${libro.idLibro}">[[
 									#{accion.editar} ]]</a></td>
@@ -58,7 +54,7 @@
 				</table>
 			</div>
 			<div th:if="${libros == null or libros.empty}">
-				<p>[[ #{persona.lista-vacia} ]]</p>
+				<p>[[ #{libro.lista-vacia} ]]</p>
 			</div>
 		</div>
 
