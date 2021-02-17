@@ -34,7 +34,7 @@ public class ControladorCopias {
 		model.addAttribute("libro", libro);
 		model.addAttribute("copias", copias);
 
-		return "/copias/copias";
+		return "copias/copias";
 	}
 
 	@GetMapping("/libros/{idLibro}/copias/{idCopia}/eliminar")

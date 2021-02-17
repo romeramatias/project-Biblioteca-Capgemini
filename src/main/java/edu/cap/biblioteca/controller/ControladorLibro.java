@@ -39,7 +39,7 @@ public class ControladorLibro {
 	@GetMapping("/libros/agregar")
 	public String agregar(Libro libro) {
 		log.info("Agregar - Libro Controller");
-		return "/libros/modificar";
+		return "libros/modificar";
 	}
 
 	@PostMapping("/libros/guardar")
@@ -60,6 +60,6 @@ public class ControladorLibro {
 		log.info(libro.toString());
 		libro = this.librosService.buscarLibro(libro);
 		model.addAttribute("libro", libro);
-		return "/libros/modificar";
+		return "libros/modificar";
 	}
 }
