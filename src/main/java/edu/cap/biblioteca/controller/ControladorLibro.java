@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.cap.biblioteca.model.Libro;
 import edu.cap.biblioteca.service.AutorService;
@@ -28,7 +29,7 @@ public class ControladorLibro {
 
 	@Autowired
 	private AutorService autoresService;
-	
+
 	@Autowired
 	private CopiaService copiasService;
 
@@ -36,10 +37,25 @@ public class ControladorLibro {
 	public String inicio(Model model) {
 		log.info("Inicio - Libro Controller");
 		var libros = librosService.listarLibros();
-		log.info(libros.toString());
+		var totalLibros = libros.size();
+		var totalCopias = this.copiasService.listarCopias().size();
 		model.addAttribute("libros", libros);
+		model.addAttribute("totalLibros", totalLibros);
+		model.addAttribute("totalCopias", totalCopias);
 
 		return "libros/libros";
+	}
+
+	@GetMapping("/libros/buscar")
+	public String buscarLibros(Model model, @RequestParam String nombre) {
+		log.info("Inicio - Libro Controller");
+		log.info(nombre);
+		var libros = librosService.buscarLibros(nombre);
+		var totalLibros = libros.size();
+		
+		model.addAttribute("libros", libros);
+		model.addAttribute("totalLibros", totalLibros);
+		return "libros/buscar";
 	}
 
 	@GetMapping("/libros/agregar")

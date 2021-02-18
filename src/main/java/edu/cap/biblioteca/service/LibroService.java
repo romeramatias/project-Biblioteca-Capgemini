@@ -18,4 +18,5 @@ public interface LibroService {
 
 	Libro buscarLibro(Libro libro);
 
+	List<Libro> buscarLibros(String nombre);
 }

@@ -10,6 +10,8 @@ import edu.cap.biblioteca.model.Copia;
 
 public interface CopiaService {
 
+	List<Copia> listarCopias();
+	
 	List<Copia> listarCopiasPorLibro(Long idLibro);
 
 	void eliminarCopiasPorLibro(Long idLibro);

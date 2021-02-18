@@ -49,18 +49,26 @@ public class CopiaServiceImplement implements CopiaService {
 	}
 
 	@Override
+	@Transactional
 	public void guardarCopia(Copia copia) {
 		copia.setEstado(EstadoCopia.BIBLIOTECA);
 		this.copiasRepository.save(copia);
 	}
 
 	@Override
+	@Transactional
 	public void eliminarCopiasPorLibro(Long idLibro) {
 		var copiasLibro = listarCopiasPorLibro(idLibro);
 
 		for (Copia copia : copiasLibro) {
 			this.eliminar(copia);
 		}
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Copia> listarCopias() {
+		return this.copiasRepository.findAll();
 	}
 
 }

@@ -37,9 +37,7 @@
 							style="max-width: 20rem;">
 							<div class="card-body">
 								<h4 class="card-title">Total de libros</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book"> </i> [[${totalLibros}]]
-								</h3>
+								<p class="card-text">[[${totalLibros}]]</p>
 							</div>
 						</div>
 					</div>
@@ -48,32 +46,18 @@
 							style="max-width: 20rem;">
 							<div class="card-body">
 								<h4 class="card-title">Total de Copias</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book-open"></i> [[${totalCopias}]]
-								</h3>
+								<p class="card-text">TO-DO</p>
 							</div>
 						</div>
 					</div>
+					<div class="col">Prestamos activos TO-DO</div>
 					<div class="col">
-						<div class="card text-white bg-secondary mb-3"
-							style="max-width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">Prestamos activos</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book-reader"></i> TO-DO
-								</h3>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<form th:action="@{/libros/buscar(nombre)}" method="get"
-							class="form-inline my-2 my-lg-0">
-							<input class="form-control col-lg-9 mr-sm-2" type="search"
-								name="nombre" id="nombre" th:placeholder="#{libro.buscar}"
-								aria-label="Search">
-							<button class="btn btn-info my-2 my-sm-0" type="submit">[[#{accion.buscar}]]</button>
+						<form th:action="@{/libros/buscar(nombre)}" method="get" class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search" name="nombre" id="nombre"
+								placeholder="Buscar" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0"
+								type="submit">Search</button>
 						</form>
-
 					</div>
 
 				</div>

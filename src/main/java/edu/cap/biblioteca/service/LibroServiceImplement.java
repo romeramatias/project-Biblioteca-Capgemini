@@ -4,6 +4,7 @@
 
 package edu.cap.biblioteca.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,25 @@ public class LibroServiceImplement implements LibroService {
 	@Transactional(readOnly = true)
 	public Libro buscarLibro(Libro libro) {
 		return this.librosRepository.findById(libro.getIdLibro()).orElse(null);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Libro> buscarLibros(String nombre) {
+		var allLibros = this.listarLibros();
+		List<Libro> libros = new ArrayList<>();
+
+		if (nombre.isBlank()) {
+			return allLibros;
+		}
+		
+		
+		for (Libro libro : allLibros) {
+			if (libro.getTitulo().equalsIgnoreCase(nombre)) {
+				libros.add(libro);
+			}
+		}
+
+		return libros;
 	}
 }
