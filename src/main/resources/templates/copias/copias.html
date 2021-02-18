@@ -8,36 +8,69 @@
 <body>
 	<header th:replace="layout/layout :: header"> </header>
 
-	<h1>
-		[[ #{copias.listado} ]] <i><span th:text="${libro.titulo}"></span></i>
-	</h1>
+	<div class="jumbotron mx-3 mt-3">
 
-	<p>
-		<a th:href="@{/libros/} + ${libro.idLibro} + @{/copias} + @{/agregar}">AGREGAR COPIA</a>
-	</p>
 
-	<div th:if="${copias != null and !copias.empty}">
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">[[ #{copias.id} ]]</th>
-					<th scope="col">ESTADO</th>
-					<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
-						#{accion.eliminar} ]]</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="copia : ${copias}">
-					<td th:text="${copia.idCopia}"></td>
-					<td th:text="${copia.estado}"></td>
-					<td sec:authorize="hasRole('ROLE_ADMIN')"><a
-						th:href="@{/libros/} + ${libro.idLibro} + @{/copias/} + ${copia.idCopia} + @{/eliminar}">Eliminar</a></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div th:if="${copias == null or copias.empty}">
-		<p>[[ #{persona.lista-vacia} ]]</p>
+
+		<div>
+			<div class="row">
+				<div class="col">
+					<div class="float-left">
+						<h1>
+							[[ #{copia.listado} ]] <span class="libro"
+								th:text="${libro.titulo}"></span>
+
+						</h1>
+					</div>
+				</div>
+				<div class="col">
+					<div class="float-right mx-2">
+						<a class="btn btn-info"
+							th:href="@{/libros/} + ${libro.idLibro} + @{/copias} + @{/agregar}">[[#{copia.crear}]]</a>
+					</div>
+					<div class="float-right">
+						<a class="btn btn-info" th:href="@{/libros}">[[#{accion.volver}]]</a>
+					</div>
+				</div>
+			</div>
+
+			<br>
+
+			<div th:if="${copias == null or copias.empty}">
+				<p class="lead">[[ #{copia.lista-vacia} ]]</p>
+			</div>
+
+			<div th:if="${copias != null and !copias.empty}">
+				<div class="row">
+					<div class="col-8">
+						<table class="table table-hover table-bordered">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">[[ #{copia.id} ]]</th>
+									<th scope="col">[[ #{copia.estado} ]]</th>
+									<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
+										#{accion.eliminar} ]]</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="copia : ${copias}">
+									<td th:text="${copia.idCopia}"></td>
+									<td th:text="${copia.estado}"></td>
+									<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+										class="btn btn-danger"
+										th:href="@{/libros/} + ${libro.idLibro} + @{/copias/} + ${copia.idCopia} + @{/eliminar}"><i
+											class="fas fa-times"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-4">
+						<div>TO-DO Cantidad de copias en Biblioteca</div>
+						<div>TO-DO Cantidad de copias Prestadas</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<footer th:replace="layout/layout :: footer"> </footer>

@@ -8,6 +8,10 @@ body {
 	margin-bottom: 40px;
 }
 
+.libro {
+	color: #17a2b8;
+}
+
 html {
 	min-height: 100%;
 	position: relative;

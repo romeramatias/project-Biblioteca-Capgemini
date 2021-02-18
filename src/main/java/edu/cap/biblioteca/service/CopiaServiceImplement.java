@@ -54,4 +54,13 @@ public class CopiaServiceImplement implements CopiaService {
 		this.copiasRepository.save(copia);
 	}
 
+	@Override
+	public void eliminarCopiasPorLibro(Long idLibro) {
+		var copiasLibro = listarCopiasPorLibro(idLibro);
+
+		for (Copia copia : copiasLibro) {
+			this.eliminar(copia);
+		}
+	}
+
 }

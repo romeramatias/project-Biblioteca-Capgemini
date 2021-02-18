@@ -7,49 +7,77 @@
 <body>
 	<header th:replace="layout/layout :: header"> </header>
 
-	<h1>Modificar/Agregar libros</h1>
+	<div class="jumbotron mx-3 mt-3">
 
-	<h2>Formulario libro</h2>
-	<a th:href="@{/libros}">volver</a>
-
-	<form th:action="@{/libros/guardar}" method="post" th:object="${libro}">
-		<div>
-			<input type="hidden" name="idLibro" th:field="*{idLibro}">
-		</div>
-		<div>
-			<label for="titulo">TITULO:</label> <input type="text" name="titulo"
-				th:field="*{titulo}" />
-		</div>
-		<br>
-		<div>
-			<label for="editorial">EDITORIAL:</label> <input type="text"
-				name="editorial" th:field="*{editorial}">
-
-		</div>
-		<br>
-		<div>
-			<label for="year">ANIO</label> <input type="number" name="year"
-				th:field="*{year}">
-
-		</div>
-		<div>
-			<label for="autor">ID AUTOR</label> <input type="number"
-				name="autor" th:field="*{autor}">
-		</div>
 
 		<div>
-			<select name="tipo">
-				<option
-					th:each="tipoLib : ${T(edu.cap.biblioteca.model.TipoLibro).values()}"
-					th:value="${tipoLib}" th:text="${tipoLib}"></option>
-			</select>
+			<div class="row">
+				<div class="col">
+					<div class="float-left">
+						<h1>[[#{libro.formulario}]]</h1>
+					</div>
+				</div>
+				<div class="col">
+					<div class="float-right">
+						<a th:href="@{/libros}" class="btn btn-info">[[
+							#{accion.volver} ]]</a>
+
+					</div>
+				</div>
+			</div>
 		</div>
-		<div>
-			<input type="submit" name="guardar" th:value="Guardar">
-		</div>
-	</form>
+
+		<hr>
+
+		<form th:action="@{/libros/guardar}" method="post"
+			th:object="${libro}">
+			<div class="form-group">
+				<label for="inputEmail4">[[#{libro.titulo}]]</label> <input
+					class="form-control" id="titulo" type="text" name="titulo"
+					th:field="*{titulo}">
+			</div>
+			<div class="form-row">
+				<div>
+					<input type="hidden" name="idLibro" th:field="*{idLibro}">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="year">[[#{libro.year}]]</label> <input type="number"
+						class="form-control" id="year" name="year" th:field="*{year}">
+
+				</div>
+				<div class="form-group col-md-6">
+					<label for="editorial">[[#{libro.editorial}]]</label> <input
+						type="text" class="form-control" id="editorial" name="editorial"
+						th:field="*{editorial}">
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="autor">[[#{libro.autor}]]</label> <select name="autor"
+						class="form-control">
+						<option
+							th:each="autor : ${autores}"
+							th:value="${autor.idAutor}" th:text="${autor.nombre}"></option>
+					</select>
+
+				</div>
+
+				<div class="form-group col-md-6">
+					<label for="tipo">[[#{libro.tipo}]]</label> <select name="tipo"
+						class="form-control">
+						<option
+							th:each="tipoLib : ${T(edu.cap.biblioteca.model.TipoLibro).values()}"
+							th:value="${tipoLib}" th:text="${tipoLib}"></option>
+					</select>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-info">[[#{accion.guardar}]]</button>
+		</form>
+	</div>
+
+	<br>
 
 	<footer th:replace="layout/layout :: footer"> </footer>
-
 </body>
 </html>

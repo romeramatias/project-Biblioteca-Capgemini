@@ -24,8 +24,8 @@
 
 	<header th:fragment="header">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="/"><i class="fas fa-book-open"></i>
-				[[ #{layout.titulo} ]]</a>
+			<a class="navbar-brand" href="/"><i class="fas fa-book"></i></i> [[
+				#{layout.titulo} ]]</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarColor01" aria-controls="navbarColor01"
@@ -37,6 +37,10 @@
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link" href="/libros">[[
 							#{layout.libros} ]]</a></li>
+					<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
+						class="nav-link" href="#">[[ #{layout.prestamos-user} ]]</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+						class="nav-link" href="#">[[ #{layout.prestamos-admin} ]]</a></li>
 				</ul>
 
 				<ul class="navbar-nav ml-auto">
