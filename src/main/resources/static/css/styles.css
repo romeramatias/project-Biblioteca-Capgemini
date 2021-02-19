@@ -2,8 +2,29 @@
 	max-width: 700px;
 }
 
-.index{
+.index {
 	color: white;
+}
+
+.social-icons a {
+	display: inline-block;
+	height: 3.5rem;
+	width: 3.5rem;
+	background-color: #495057;
+	color: #fff !important;
+	border-radius: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	line-height: 3.5rem;
+	margin-right: 1rem;
+}
+
+.social-icons a:last-child {
+	margin-right: 0;
+}
+
+.social-icons a:hover {
+	background-color: #a3a3a3;
 }
 
 body {

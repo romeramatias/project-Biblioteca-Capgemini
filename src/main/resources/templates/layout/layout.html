@@ -66,20 +66,27 @@
 		</nav>
 	</header>
 
+
 	<footer th:fragment="footer">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a target="_blank" class="nav-link"
-					style="display: flex; align-items: center;"
+		<div class="navbar navbar-expand-lg navbar-light bg-light">
+			<ul class="navbar-nav mr-auto" style="font-size: 24px;">
+				<li class="nav-link"><a target="_blank" class="nav-link"
+					href="https://romeramatias.github.io/"><i class="fas fa-home"></i></a></li>
+
+				<li class="nav-link"><a target="_blank" class="nav-link"
+					href="https://www.linkedin.com/in/romeramatias/"><i
+						class="fab fa-linkedin-in"></i></a></li>
+
+				<li class="nav-link"><a target="_blank" class="nav-link"
 					href="https://www.github.com/romeramatias"><i
-						class="fab fa-github fa-2x"></i> <span>&nbsp; [[#{layout.matias}]]</span>
-				</a></li>
+						class="fab fa-github"></i></a></li>
 			</ul>
+
 			<ul class="navbar-nav ml-auto">
 				<li><a class="nav-link" th:href="@{/(lang=es)}">[[#{idioma.es}]]</a></li>
 				<li><a class="nav-link" th:href="@{/(lang=en)}">[[#{idioma.en}]]</a></li>
 			</ul>
-		</nav>
+		</div>
 	</footer>
 
 </body>

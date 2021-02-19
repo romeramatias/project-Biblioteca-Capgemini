@@ -15,35 +15,41 @@
 		<h1 class="display-4 index">[[#{index.welcome}]]</h1>
 		<p class="lead" style="color: white">[[#{index.titulo}]]</p>
 
-		<div class="row">
-			<div class="col">
-				<div class="card bg-light mb-3" style="max-width: 20rem;">
-					<div class="card-header">[[#{user.admin}]]</div>
-					<div class="card-body">
-						<h4 class="card-title">[[#{role.user}]]</h4>
-						<p class="card-text">
-							<b>[[#{login.username}]]:</b> <i>admin</i> <br> <b>[[#{login.password}]]:</b>
-							<i>123</i>
-						</p>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="card bg-light mb-3" style="max-width: 20rem;">
+						<div class="card-header">[[#{user.admin}]]</div>
+						<div class="card-body">
+							<h4 class="card-title">[[#{role.admin}]]</h4>
+							<p class="card-text">
+								<b>[[#{login.username}]]:</b> <i>admin</i> <br> <b>[[#{login.password}]]:</b>
+								<i>123</i>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card bg-light mb-3" style="max-width: 20rem;">
+						<div class="card-header">[[#{user.user}]]</div>
+						<div class="card-body">
+							<h4 class="card-title">[[#{role.user}]]</h4>
+							<p class="card-text">
+								<b>[[#{login.username}]]:</b> <i>user</i> <br> <b>[[#{login.password}]]:</b>
+								<i>123</i>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="card bg-light mb-3" style="max-width: 20rem;">
-					<div class="card-header">[[#{user.user}]]</div>
-					<div class="card-body">
-						<h4 class="card-title">[[#{role.user}]]</h4>
-						<p class="card-text">
-							<b>[[#{login.username}]]:</b> <i>user</i> <br> <b>[[#{login.password}]]:</b>
-							<i>123</i>
-						</p>
-					</div>
+
+			<div class="row">
+				<div class="column">
+					<a sec:authorize="isAnonymous()" href="/login"
+						class="btn btn-info btn-block mb-2"
+						style="color: white;">[[#{index.login}]]</a>
+					<p class="lead" style="color: white; font-size: 15px;">[[#{index.parrafo}]].</p>
 				</div>
-			</div>
-			<div>
-				<a sec:authorize="isAnonymous()" href="/login"
-					class="btn btn-info col-lg mb-2" style="color: white;">[[#{index.login}]]</a>
-				<p class="lead" style="color: white; font-size: 15px;">[[#{index.parrafo}]].</p>
 			</div>
 		</div>
 	</div>
