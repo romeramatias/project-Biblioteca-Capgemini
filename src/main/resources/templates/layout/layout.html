@@ -3,8 +3,8 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 
 <head th:fragment="head">
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -72,12 +72,12 @@
 				<li class="nav-item"><a target="_blank" class="nav-link"
 					style="display: flex; align-items: center;"
 					href="https://www.github.com/romeramatias"><i
-						class="fab fa-github fa-2x"></i> <span>&nbsp; Romera Matías</span>
+						class="fab fa-github fa-2x"></i> <span>&nbsp; [[#{layout.matias}]]</span>
 				</a></li>
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li><a class="nav-link" th:href="@{/(lang=es)}">Español</a></li>
-				<li><a class="nav-link" th:href="@{/(lang=en)}">Ingles</a></li>
+				<li><a class="nav-link" th:href="@{/(lang=es)}">[[#{idioma.es}]]</a></li>
+				<li><a class="nav-link" th:href="@{/(lang=en)}">[[#{idioma.en}]]</a></li>
 			</ul>
 		</nav>
 	</footer>

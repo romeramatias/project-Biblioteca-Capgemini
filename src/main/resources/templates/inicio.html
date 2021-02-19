@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 <head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+
 <title></title>
 </head>
 <body>
@@ -10,43 +12,38 @@
 	<div
 		class="pricing-header px-3 py-3 pt-md-3 pb-md-4 mt-5 mx-auto text-center">
 
-		<h1 class="display-4 index">
-			Bienvenido a <br> <strong>Biblioteca Matias</strong>!
-		</h1>
-		<p class="lead" style="color: white">A continuacion dejo dos
-			usuarios de ejemplo para iniciar sesion y ver el funcionamiento de
-			todas las rutas.</p>
+		<h1 class="display-4 index">[[#{index.welcome}]]</h1>
+		<p class="lead" style="color: white">[[#{index.titulo}]]</p>
 
 		<div class="row">
 			<div class="col">
 				<div class="card bg-light mb-3" style="max-width: 20rem;">
-					<div class="card-header">Admin</div>
+					<div class="card-header">[[#{user.admin}]]</div>
 					<div class="card-body">
-						<h4 class="card-title">Rol de Administrador</h4>
+						<h4 class="card-title">[[#{role.user}]]</h4>
 						<p class="card-text">
-							username: admin <br> password: 123
+							<b>[[#{login.username}]]:</b> <i>admin</i> <br> <b>[[#{login.password}]]:</b>
+							<i>123</i>
 						</p>
 					</div>
 				</div>
 			</div>
 			<div class="col">
 				<div class="card bg-light mb-3" style="max-width: 20rem;">
-					<div class="card-header">Lector</div>
+					<div class="card-header">[[#{user.user}]]</div>
 					<div class="card-body">
-						<h4 class="card-title">Rol de Lector</h4>
+						<h4 class="card-title">[[#{role.user}]]</h4>
 						<p class="card-text">
-							username: user <br> password: 123
+							<b>[[#{login.username}]]:</b> <i>user</i> <br> <b>[[#{login.password}]]:</b>
+							<i>123</i>
 						</p>
 					</div>
 				</div>
 			</div>
 			<div>
 				<a sec:authorize="isAnonymous()" href="/login"
-					class="btn btn-info col-lg mb-2" style="color: white;">Inicia
-					sesion ahora!</a>
-				<p class="lead" style="color: white; font-size: 15px;">Recomiendo
-					logearse con usuario admin ya que tiene mas rutas y funcionalidades
-					implementadas.</p>
+					class="btn btn-info col-lg mb-2" style="color: white;">[[#{index.login}]]</a>
+				<p class="lead" style="color: white; font-size: 15px;">[[#{index.parrafo}]].</p>
 			</div>
 		</div>
 	</div>
