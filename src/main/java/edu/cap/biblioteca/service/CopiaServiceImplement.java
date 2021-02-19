@@ -71,4 +71,19 @@ public class CopiaServiceImplement implements CopiaService {
 		return this.copiasRepository.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Copia> listarCopiasPorEstado(Long idLibro, EstadoCopia estado) {
+		var allCopias = this.listarCopiasPorLibro(idLibro);
+		List<Copia> copias = new ArrayList<>();
+
+		for (Copia copia : allCopias) {
+			if (copia.getEstado().equals(estado)) {
+				copias.add(copia);
+			}
+		}
+
+		return copias;
+	}
+
 }

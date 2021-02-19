@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.cap.biblioteca.model.Copia;
+import edu.cap.biblioteca.model.EstadoCopia;
 import edu.cap.biblioteca.model.Libro;
 import edu.cap.biblioteca.service.CopiaService;
 import edu.cap.biblioteca.service.LibroService;
@@ -28,9 +29,15 @@ public class ControladorCopias {
 	@GetMapping("/libros/{idLibro}/copias")
 	public String inicio(Libro libro, Model model) {
 		log.info("Inicio - Copias Controller");
+
 		var copias = this.copiasService.listarCopiasPorLibro(libro.getIdLibro());
 		libro = this.librosService.buscarLibro(libro);
+		var copiasBiblioteca = this.copiasService.listarCopiasPorEstado(libro.getIdLibro(), EstadoCopia.BIBLIOTECA).size();
+		var copiasPrestadas = this.copiasService.listarCopiasPorEstado(libro.getIdLibro(), EstadoCopia.PRESTADO).size();
 
+		model.addAttribute("copiasBiblioteca", copiasBiblioteca);
+		model.addAttribute("copiasPrestadas", copiasPrestadas);
+		model.addAttribute("libro", libro);
 		model.addAttribute("libro", libro);
 		model.addAttribute("copias", copias);
 

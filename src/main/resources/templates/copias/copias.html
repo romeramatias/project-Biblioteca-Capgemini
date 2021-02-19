@@ -30,7 +30,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<br>
 
 			<div th:if="${copias == null or copias.empty}">
@@ -62,8 +62,24 @@
 						</table>
 					</div>
 					<div class="col-4">
-						<div>TO-DO Cantidad de copias en Biblioteca</div>
-						<div>TO-DO Cantidad de copias Prestadas</div>
+						<div class="card text-white bg-secondary mx-auto mb-3"
+							style="max-width: 20rem;">
+							<div class="card-body">
+								<h4 class="card-title">Copias en Biblioteca</h4>
+								<h3 class="card-text">
+									<i class="fas fa-book"> </i> [[${copiasBiblioteca}]]
+								</h3>
+							</div>
+						</div>
+						<div class="card text-white bg-secondary mx-auto mb-3"
+							style="max-width: 20rem;">
+							<div class="card-body">
+								<h4 class="card-title">Copias Prestadas</h4>
+								<h3 class="card-text">
+									<i class="fas fa-book"> </i> [[${copiasPrestadas}]]
+								</h3>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

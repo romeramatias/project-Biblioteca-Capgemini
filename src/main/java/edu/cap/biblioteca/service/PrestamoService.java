@@ -11,8 +11,8 @@ import edu.cap.biblioteca.model.Prestamo;
 public interface PrestamoService {
 
 	List<Prestamo> listarPrestamos();
-	
+
 	List<Prestamo> prestamosPorUsuario();
-	
-	
+
+	List<Prestamo> prestamosActivos();
 }

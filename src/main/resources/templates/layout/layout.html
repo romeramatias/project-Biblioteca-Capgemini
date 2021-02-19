@@ -38,12 +38,14 @@
 
 			<div class="collapse navbar-collapse" id="navbarColor01">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a class="nav-link" href="/libros">[[
+					<li sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"
+						class="nav-item"><a class="nav-link" href="/libros">[[
 							#{layout.libros} ]]</a></li>
 					<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
 						class="nav-link" href="#">[[ #{layout.prestamos-user} ]]</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
-						class="nav-link" href="/prestamos">[[ #{layout.prestamos-admin} ]]</a></li>
+						class="nav-link" href="/prestamos">[[
+							#{layout.prestamos-admin} ]]</a></li>
 				</ul>
 
 				<ul class="navbar-nav ml-auto">
