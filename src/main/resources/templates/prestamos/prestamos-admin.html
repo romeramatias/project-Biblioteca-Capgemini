@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<title></title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<div class="jumbotron mx-5 mt-5">
+		<div>
+			<div class="row">
+				<div class="col">
+					<div class="float-left">
+						<h1>[[ #{prestamo.listado} ]]</h1>
+					</div>
+				</div>
+				<hr>
+				<div class="col"></div>
+			</div>
+
+			<hr>
+
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
+				<div class="col">
+					<div class="card text-white bg-secondary mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">Total de libros</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book"> </i> [[${totalLibros}]]
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col col-lg">
+					<div class="card text-white bg-secondary mb-3 col-lg"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">Total de Copias</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book-open"></i> [[${totalCopias}]]
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card text-white bg-secondary mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">Prestamos activos</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book-reader"></i> TO-DO
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div th:if="${prestamos != null and !prestamos.empty}">
+			<table class="table table-hover table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">[[ #{prestamo.id} ]]</th>
+						<th scope="col">[[ #{prestamo.lector} ]]</th>
+						<th scope="col">[[ #{prestamo.libro} ]]</th>
+						<th scope="col">[[ #{prestamo.copia} ]]</th>
+						<th scope="col">[[ #{prestamo.fecha-inicio} ]]</th>
+						<th scope="col">[[ #{prestamo.fecha-fin} ]]</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="prestamo : ${prestamos}">
+						<td th:text="${prestamo.idPrestamo}"></td>
+						<td
+							th:text="${prestamo.usuario.nombre} + ' ' + ${prestamo.usuario.apellido}"></td>
+						<td th:text="${prestamo.libro.titulo}"></td>
+						<td th:text="${prestamo.copia.idCopia}"></td>
+						<td th:text="${prestamo.fechaInicio}"></td>
+						<td th:if="${prestamo.fechaFin == null}">Libro aun no
+							devuleto 😒</td>
+						<td th:unless="${prestamo.fechaFin}"><span
+							th:text="${prestamo.fechaFin}"></span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${prestamos == null or prestamos.empty}">
+			<p class="lead">[[ #{prestamo.lista-vacia} ]]</p>
+		</div>
+
+	</div>
+
+	<br>
+	<br>
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+
+</body>
+</html>

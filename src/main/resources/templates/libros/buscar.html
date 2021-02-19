@@ -9,7 +9,7 @@
 	<div>
 		<header th:replace="layout/layout :: header"> </header>
 
-		<div class="jumbotron mx-3 mt-3">
+		<div class="jumbotron mx-5 mt-5">
 
 			<div>
 				<div class="row">
@@ -23,8 +23,8 @@
 						<div class="float-right">
 							<a sec:authorize="hasRole('ROLE_ADMIN')"
 								class="btn
-								btn-info" th:href="@{/libros/agregar}">[[
-								#{libro.crear} ]]</a>
+								btn-outline-info"
+								th:href="@{/libros/agregar}">[[ #{libro.crear} ]]</a>
 						</div>
 					</div>
 				</div>
@@ -37,7 +37,9 @@
 							style="max-width: 20rem;">
 							<div class="card-body">
 								<h4 class="card-title">Total de libros</h4>
-								<p class="card-text">[[${totalLibros}]]</p>
+								<h3 class="card-text">
+									<i class="fas fa-book"> </i> [[${totalLibros}]]
+								</h3>
 							</div>
 						</div>
 					</div>
@@ -46,23 +48,36 @@
 							style="max-width: 20rem;">
 							<div class="card-body">
 								<h4 class="card-title">Total de Copias</h4>
-								<p class="card-text">TO-DO</p>
+								<h3 class="card-text">
+									<i class="fas fa-book-open"></i> [[${totalCopias}]]
+								</h3>
 							</div>
 						</div>
 					</div>
-					<div class="col">Prestamos activos TO-DO</div>
 					<div class="col">
-						<form th:action="@{/libros/buscar(nombre)}" method="get" class="form-inline my-2 my-lg-0">
-							<input class="form-control mr-sm-2" type="search" name="nombre" id="nombre"
-								placeholder="Buscar" aria-label="Search">
-							<button class="btn btn-outline-success my-2 my-sm-0"
-								type="submit">Search</button>
+						<div class="card text-white bg-secondary mb-3"
+							style="max-width: 20rem;">
+							<div class="card-body">
+								<h4 class="card-title">Prestamos activos</h4>
+								<h3 class="card-text">
+									<i class="fas fa-book-reader"></i> TO-DO
+								</h3>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<form th:action="@{/libros/buscar(nombre)}" method="get"
+							class="form-inline my-2 my-lg-0">
+							<input class="form-control col-lg-8 mr-sm-2" type="search"
+								name="nombre" id="nombre" th:placeholder="#{libro.buscar}"
+								aria-label="Search">
+							<button class="btn btn-outline-info my-2 col-lg-3 my-sm-0"
+								type="submit">[[#{accion.buscar}]]</button>
 						</form>
 					</div>
 
 				</div>
 			</div>
-
 			<br>
 
 			<div th:if="${libros != null and !libros.empty}">
@@ -112,7 +127,7 @@
 				</table>
 			</div>
 			<div th:if="${libros == null or libros.empty}">
-				<p>[[ #{libro.lista-vacia} ]]</p>
+				<p class="lead">[[ #{libro.lista-vacia} ]]</p>
 			</div>
 
 		</div>

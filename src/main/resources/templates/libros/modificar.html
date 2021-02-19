@@ -7,7 +7,7 @@
 <body>
 	<header th:replace="layout/layout :: header"> </header>
 
-	<div class="jumbotron mx-3 mt-3">
+	<div class="jumbotron mx-5 mt-5">
 
 
 		<div>
@@ -19,7 +19,7 @@
 				</div>
 				<div class="col">
 					<div class="float-right">
-						<a th:href="@{/libros}" class="btn btn-info">[[
+						<a th:href="@{/libros}" class="btn btn-outline-info">[[
 							#{accion.volver} ]]</a>
 
 					</div>
@@ -55,9 +55,8 @@
 				<div class="form-group col-md-6">
 					<label for="autor">[[#{libro.autor}]]</label> <select name="autor"
 						class="form-control">
-						<option
-							th:each="autor : ${autores}"
-							th:value="${autor.idAutor}" th:text="${autor.nombre}"></option>
+						<option th:each="autor : ${autores}" th:value="${autor.idAutor}"
+							th:text="${autor.nombre}"></option>
 					</select>
 
 				</div>
@@ -71,11 +70,12 @@
 					</select>
 				</div>
 			</div>
-
-			<button type="submit" class="btn btn-info">[[#{accion.guardar}]]</button>
+			<hr>
+			<button type="submit" class="btn btn-info col-lg">[[#{accion.guardar}]]</button>
 		</form>
 	</div>
 
+	<br>
 	<br>
 
 	<footer th:replace="layout/layout :: footer"> </footer>

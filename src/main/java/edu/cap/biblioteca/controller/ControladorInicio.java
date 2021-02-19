@@ -16,7 +16,7 @@ public class ControladorInicio {
 
 	@GetMapping("/")
 	public String inicio(Model model) {
-		log.info("INICIO");
+		log.info("Inicio - Controlador Index");
 		return "inicio";
 	}
 }

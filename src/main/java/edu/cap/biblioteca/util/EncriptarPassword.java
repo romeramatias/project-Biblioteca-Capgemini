@@ -4,6 +4,8 @@
 
 package edu.cap.biblioteca.util;
 
+import java.time.LocalDate;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class EncriptarPassword {
@@ -13,7 +15,7 @@ public class EncriptarPassword {
 		var password = "123";
 		System.out.println(password);
 		System.out.println(encriptarPassword(password));
-		
+		System.out.println(LocalDate.now());
 	}
 
 	public static String encriptarPassword(String password) {

@@ -1,3 +1,11 @@
+.pricing-header {
+	max-width: 700px;
+}
+
+.index{
+	color: white;
+}
+
 body {
 	/* 	background: #E0EAFC; fallback for old browsers */
 	/* 	background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC); */
@@ -7,6 +15,14 @@ body {
 	/* 	margin: 0; */
 	/* 	margin-bottom: 40px; */
 	background-image: url(../assets/back.jpg);
+	font-family: 'Montserrat', sans-serif;
+}
+
+.jumbo {
+	background-image: url(../assets/back.jpg);
+	width: 100%;
+	height: 100%;
+	margin: 0px;
 }
 
 .inicio {

@@ -9,8 +9,7 @@
 	<div>
 		<header th:replace="layout/layout :: header"> </header>
 
-		<div class="jumbotron mx-3 mt-3">
-
+		<div class="jumbotron mx-5 mt-5">
 			<div>
 				<div class="row">
 					<div class="col">
@@ -23,7 +22,7 @@
 						<div class="float-right">
 							<a sec:authorize="hasRole('ROLE_ADMIN')"
 								class="btn
-								btn-info" th:href="@{/libros/agregar}">[[
+								btn-outline-info" th:href="@{/libros/agregar}">[[
 								#{libro.crear} ]]</a>
 						</div>
 					</div>
@@ -68,12 +67,11 @@
 					<div class="col-lg-4">
 						<form th:action="@{/libros/buscar(nombre)}" method="get"
 							class="form-inline my-2 my-lg-0">
-							<input class="form-control col-lg-9 mr-sm-2" type="search"
+							<input class="form-control col-lg-8 mr-sm-2" type="search"
 								name="nombre" id="nombre" th:placeholder="#{libro.buscar}"
 								aria-label="Search">
-							<button class="btn btn-info my-2 my-sm-0" type="submit">[[#{accion.buscar}]]</button>
+							<button class="btn btn-outline-info my-2 col-lg-3 my-sm-0" type="submit">[[#{accion.buscar}]]</button>
 						</form>
-
 					</div>
 
 				</div>
@@ -118,7 +116,7 @@
 								th:href="@{/eliminar/} + ${libro.idLibro}"><i
 									class="fas fa-times"></i></a></td>
 							<td sec:authorize="hasRole('ROLE_ADMIN')"><a
-								class="btn btn-primary"
+								class="btn btn-outline-primary"
 								th:href="@{/libros/} + ${libro.idLibro} + @{/copias}">[[
 									#{libro.copias} ]]</a></td>
 							<td sec:authorize="hasRole('ROLE_USER')"><a
@@ -128,7 +126,7 @@
 				</table>
 			</div>
 			<div th:if="${libros == null or libros.empty}">
-				<p>[[ #{libro.lista-vacia} ]]</p>
+				<p class="lead">[[ #{libro.lista-vacia} ]]</p>
 			</div>
 
 		</div>

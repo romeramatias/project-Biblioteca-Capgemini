@@ -13,7 +13,9 @@
 			<div class="avatar">
 				<i class="fas fa-user-alt fa-5x"></i>
 			</div>
-			<h2 class="text-center">[[ #{accion.login} ]]</h2>
+			<h2 class="text-center">[[ #{login.welcome} ]]</h2>
+			<h6 class="text-center pb-3" style="color: black">[[ #{login.dale} ]] 📚</h6>
+
 			<div class="form-group">
 				<input type="text" class="form-control" name="username"
 					id="username" th:placeholder="#{login.username}"
@@ -25,8 +27,7 @@
 					required="required">
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
-					in</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-block">[[#{accion.login}]]</button>
 			</div>
 		</form>
 	</div>
