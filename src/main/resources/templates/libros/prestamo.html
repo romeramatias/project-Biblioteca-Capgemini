@@ -9,25 +9,24 @@
 	<header th:replace="layout/layout :: header"> </header>
 
 	<div class="jumbotron mx-5 mt-5">
-		<h1>Confirmar Prestamo</h1>
+		<h1>[[#{prestamo.confirmar}]]</h1>
 		<hr>
 
 		<div class="card bg-light text-center">
-			<div class="card-header">Informacion del prestamo</div>
+			<div class="card-header">[[#{prestamo.info}]]</div>
 			<div class="card-body">
-				<h5 class="card-title">Special title treatment</h5>
+				<h5 class="card-title">[[#{prestamo.detalles}]]:</h5>
 				<p class="card-text">
-					<strong>Nombre del libro:</strong> <em>[[${libro.titulo}]]</em>
+					<strong>[[#{prestamo.titulo}]] :</strong> <em>[[${libro.titulo}]]</em>
+					<br>
+				
+					<strong>[[#{libro.id}]] :</strong> <em>[[${libro.idLibro}]]</em>
+				<br>
+				
+					<strong>[[#{copia.id}]]:</strong> <em>[[${copiaDisponible.idCopia}]]</em>
 				</p>
-				<p class="card-text">
-					<strong>ID DEL LIBRO:</strong> <em>[[${libro.idLibro}]]</em>
-				</p>
-				<p class="card-text">
-					<strong>ID DE LA COPIA:</strong> <em>[[${copiaDisponible.idCopia}]]</em>
-				</p>
-				<p class="card-text">Recuerde que tendra 30 dias para realizar
-					la devolucion del libro y no ser multado.</p>
-				<a href="#" class="btn btn-primary">Confirmar prestamo</a>
+				<p class="card-text">[[#{prestamo.devolucion}]]</p>
+				<a th:href="@{/libros/prestamo/} + ${libro.idLibro} + @{/} + ${copiaDisponible.idCopia} + @{/guardar}"class="btn btn-primary">[[#{prestamo.confirmar}]]</a>
 			</div>
 		</div>
 

@@ -73,9 +73,6 @@ public class ControladorLibro {
 		
 		var copiaDisponible = this.copiasService.buscarCopiaDisponible(libro.getIdLibro());
 		libro = this.librosService.buscarLibro(libro);
-
-		log.info(copiaDisponible.toString());
-		log.info(libro.toString());
 		
 		model.addAttribute("libro", libro);
 		model.addAttribute("copiaDisponible", copiaDisponible);
