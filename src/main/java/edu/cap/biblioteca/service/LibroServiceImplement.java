@@ -53,10 +53,9 @@ public class LibroServiceImplement implements LibroService {
 		if (nombre.isBlank()) {
 			return allLibros;
 		}
-		
-		
+
 		for (Libro libro : allLibros) {
-			if (libro.getTitulo().equalsIgnoreCase(nombre)) {
+			if (libro.getTitulo().toUpperCase().contains(nombre.toUpperCase())) {
 				libros.add(libro);
 			}
 		}

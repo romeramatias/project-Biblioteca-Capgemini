@@ -24,4 +24,7 @@ public interface CopiaService {
 	void eliminar(Copia copia);
 
 	Copia buscarCopia(Copia copia);
+	
+	Copia buscarCopiaDisponible(Long idLibro);
+
 }

@@ -85,5 +85,25 @@ public class CopiaServiceImplement implements CopiaService {
 
 		return copias;
 	}
+	
+	@Override
+	@Transactional
+	public Copia buscarCopiaDisponible(Long idLibro) {
+		var allCopias = this.listarCopiasPorLibro(idLibro);
+		Copia copiaDisponible = null;
+		Copia auxiliar;
+		int index = 0;
+		
+		while (copiaDisponible == null && index < allCopias.size()) {
+			auxiliar = allCopias.get(index);
+			if (auxiliar.getEstado() == EstadoCopia.BIBLIOTECA) {
+				copiaDisponible = auxiliar;
+				// Esto lo deberia hacer en la pagina de confirm prestamo
+				//copiaDisponible.setEstado(EstadoCopia.PRESTADO);
+			}
+			index++;
+		}
+		return copiaDisponible;
+	}
 
 }

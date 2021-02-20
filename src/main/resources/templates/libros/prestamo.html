@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+<head th:replace="layout/layout :: head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"> </header>
+
+	<div class="jumbotron mx-5 mt-5">
+		<h1>Confirmar Prestamo</h1>
+		<hr>
+
+		<div class="card bg-light text-center">
+			<div class="card-header">Informacion del prestamo</div>
+			<div class="card-body">
+				<h5 class="card-title">Special title treatment</h5>
+				<p class="card-text">
+					<strong>Nombre del libro:</strong> <em>[[${libro.titulo}]]</em>
+				</p>
+				<p class="card-text">
+					<strong>ID DEL LIBRO:</strong> <em>[[${libro.idLibro}]]</em>
+				</p>
+				<p class="card-text">
+					<strong>ID DE LA COPIA:</strong> <em>[[${copiaDisponible.idCopia}]]</em>
+				</p>
+				<p class="card-text">Recuerde que tendra 30 dias para realizar
+					la devolucion del libro y no ser multado.</p>
+				<a href="#" class="btn btn-primary">Confirmar prestamo</a>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+	<br>
+	<br>
+
+	<footer th:replace="layout/layout :: footer"> </footer>
+
+</body>
+</html>

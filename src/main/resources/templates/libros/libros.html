@@ -119,8 +119,9 @@
 								class="btn btn-outline-primary"
 								th:href="@{/libros/} + ${libro.idLibro} + @{/copias}">[[
 									#{libro.copias} ]]</a></td>
-							<td sec:authorize="hasRole('ROLE_USER')"><a
-								class="btn btn-primary" href="#">[[ #{libro.prestamo} ]]</a></td>
+							<td sec:authorize="hasRole('ROLE_USER')">
+							
+							<a class="btn btn-primary" th:href="@{/libros/prestamo/} + ${libro.idLibro}">[[ #{libro.prestamo} ]]</a></td>
 						</tr>
 					</tbody>
 				</table>

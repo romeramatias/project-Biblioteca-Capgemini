@@ -80,10 +80,10 @@
 						<td th:text="${prestamo.libro.titulo}"></td>
 						<td th:text="${prestamo.copia.idCopia}"></td>
 						<td th:text="${prestamo.fechaInicio}"></td>
-						<td th:if="${prestamo.fechaFin == null}">Libro aun no
-							devuleto 😒</td>
-						<td th:unless="${prestamo.fechaFin}"><span
-							th:text="${prestamo.fechaFin}"></span></td>
+						<td th:if="${prestamo.fechaFin == null}">TO-DO Copia aun no
+							devuelta</td>
+						<td th:if="${!(prestamo.fechaFin == null)}" th:text="${prestamo.fechaFin}"></td>
+
 					</tr>
 				</tbody>
 			</table>

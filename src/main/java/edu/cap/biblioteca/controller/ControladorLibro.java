@@ -45,7 +45,7 @@ public class ControladorLibro {
 		var totalLibros = libros.size();
 		var totalCopias = this.copiasService.listarCopias().size();
 		var totalPrestamosActivos = this.prestamosService.prestamosActivos().size();
-				
+		
 		model.addAttribute("libros", libros);
 		model.addAttribute("totalLibros", totalLibros);
 		model.addAttribute("totalCopias", totalCopias);
@@ -53,7 +53,7 @@ public class ControladorLibro {
 
 		return "libros/libros";
 	}
-
+	
 	@GetMapping("/libros/buscar")
 	public String buscarLibros(Model model, @RequestParam String nombre) {
 		log.info("Inicio - Libro Controller");
@@ -65,6 +65,22 @@ public class ControladorLibro {
 		model.addAttribute("totalLibros", totalLibros);
 		
 		return "libros/buscar";
+	}
+
+	@GetMapping("/libros/prestamo/{idLibro}")
+	public String prestarLibro(Model model, Libro libro) {
+		log.info("Prestamo - Libro Controller");
+		
+		var copiaDisponible = this.copiasService.buscarCopiaDisponible(libro.getIdLibro());
+		libro = this.librosService.buscarLibro(libro);
+
+		log.info(copiaDisponible.toString());
+		log.info(libro.toString());
+		
+		model.addAttribute("libro", libro);
+		model.addAttribute("copiaDisponible", copiaDisponible);
+		
+		return "libros/prestamo";
 	}
 
 	@GetMapping("/libros/agregar")
