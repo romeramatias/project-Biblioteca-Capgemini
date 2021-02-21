@@ -45,6 +45,21 @@ public class PrestamoServiceImplement implements PrestamoService {
 		
 		return prestamos;
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Prestamo> prestamosActivosPorUsuario(Long idUsuario) {
+		var userPrestamos = this.prestamosPorUsuario(idUsuario);
+		List<Prestamo> prestamos = new ArrayList<>();
+
+		for (Prestamo prestamo : userPrestamos) {
+			if (prestamo.getFechaFin() == null) {
+				prestamos.add(prestamo);
+			}
+		}
+				
+		return prestamos;
+	}
 
 	@Override
 	@Transactional(readOnly = true)

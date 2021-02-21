@@ -11,25 +11,30 @@
 	<div class="jumbotron mx-5 mt-5">
 
 		<div class="row">
+
 			<div class="col">
 				<div class="float-left">
 					<h1>[[#{prestamo.mis-prestamos}]]</h1>
 					<br> <a class="btn btn-outline-info btn-block"
-						th:href="@{/mis-prestamos/activos}">[[#{user.fun12}]]</a>
+						th:href="@{/mis-prestamos}">[[#{accion.volver}]]</a>
 				</div>
 			</div>
+
 			<hr>
-			<div class="col">
+
+			<div class="col" th:if="${totalPrestamosDisponibles} == 0">
 				<div class="card text-white bg-secondary mb-3">
 					<div class="card-body">
-						<h4 class="card-title">[[#{number.prestamos}]]</h4>
-						<h3 class="card-text">
-							<i class="fas fa-book-reader"></i> [[${totalPrestamosActivos}]]
-						</h3>
+						<h4 class="card-title">
+							<i class="fas fa-exclamation-circle"></i>
+							[[#{prestamo.limite-titulo}]]
+						</h4>
+						<p>[[#{prestamo.limite-info}]]</p>
 					</div>
 				</div>
 			</div>
-			<div class="col">
+
+			<div class="col" th:if="${totalPrestamosDisponibles} != 0">
 				<div class="card text-white bg-secondary mb-3">
 					<div class="card-body">
 						<h4 class="card-title">[[#{number.prestamos-disponibles}]]</h4>
@@ -41,6 +46,7 @@
 				</div>
 			</div>
 		</div>
+
 
 		<hr>
 
@@ -89,11 +95,9 @@
 			<p class="lead">[[ #{prestamo.lista-vacia} ]]</p>
 		</div>
 	</div>
-
 	<br>
 	<br>
 
 	<footer th:replace="layout/layout :: footer"> </footer>
-
 </body>
 </html>

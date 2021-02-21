@@ -2,16 +2,111 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
 <head th:replace="layout/layout :: head">
+<meta charset="utf-8">
+
 <title>Index</title>
 </head>
 <body>
 	<header th:replace="layout/layout :: header"> </header>
 
 	<div class="jumbotron mx-5 mt-5">
-		<h2>TO-DO USER DATA</h2>
+		<h1>
+			[[#{login.welcome}]] <strong>[[${usuario.nombre}]]
+				[[${usuario.apellido}]]</strong>
+		</h1>
 
-		<p> Nombre: [[${usuario.nombre}]]</p>
-		<p> Apellido: [[${usuario.apellido}]]</p>
+		<hr>
+
+		<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<p class="lead">[[#{user.admin.parrafo}]] [[#{user.funciones}]]</p>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun1}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun2}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun3}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun4}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun5}]]</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun6}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun7}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun8}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun9}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun10}]]</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun11}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun12}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun13}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun14}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun15}]]</a>
+				</div>
+			</div>
+		</div>
+
+		<div sec:authorize="hasRole('ROLE_USER')">
+			<p class="lead">Dispones de un rol de usuario! Algunas de las
+				funciones disponibles son:</p>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun1}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun5}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun16}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun17}]]</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun18}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun12}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun19}]]</a>
+				</div>
+				<div class="col">
+					<a class="btn btn-warning btn-block">[[#{user.fun20}]]</a>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<footer th:replace="layout/layout :: footer"> </footer>

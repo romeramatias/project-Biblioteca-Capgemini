@@ -24,6 +24,7 @@ import lombok.Data;
 public class Prestamo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	public static final int LIMITE_PRESTAMOS = 3;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

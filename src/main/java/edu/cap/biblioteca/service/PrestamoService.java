@@ -25,4 +25,6 @@ public interface PrestamoService {
 
 	void devolucion(Prestamo prestamo);
 
+	List<Prestamo> prestamosActivosPorUsuario(Long idUsuario);
+
 }
