@@ -75,6 +75,22 @@ public class PrestamoServiceImplement implements PrestamoService {
 		
 		return prestamos;
 	}
+	
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Prestamo> prestamosFinalizados() {
+		var allPrestamos = this.listarPrestamos();
+		List<Prestamo> prestamos = new ArrayList<>();
+		
+		for (Prestamo prestamo : allPrestamos) {
+			if (prestamo.getFechaFin() != null) {
+				prestamos.add(prestamo);
+			}
+		}
+		
+		return prestamos;
+	}
 
 	@Override
 	public void guardarPrestamo(Libro libro, Copia copia, Usuario usuario) {
@@ -100,6 +116,7 @@ public class PrestamoServiceImplement implements PrestamoService {
 		prestamo.setFechaFin(LocalDate.now());
 		prestamo.getCopia().setEstado(EstadoCopia.BIBLIOTECA);
 	}
+
 
 
 	

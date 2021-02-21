@@ -4,11 +4,7 @@
 
 package edu.cap.biblioteca.controller;
 
-import java.net.URI;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -48,8 +44,12 @@ public class ControladorPrestamo {
 		log.info("Inico - Prestamos Controller");
 
 		var prestamos = this.prestamosService.listarPrestamos();
-
+		var totalPrestamosActivos = this.prestamosService.prestamosActivos().size();
+		var totalPrestamosFinalizados = this.prestamosService.prestamosFinalizados().size();
+		
 		model.addAttribute("prestamos", prestamos);
+		model.addAttribute("totalPrestamosActivos", totalPrestamosActivos);
+		model.addAttribute("totalPrestamosFinalizados", totalPrestamosFinalizados);
 
 		return "prestamos/prestamos-admin";
 	}

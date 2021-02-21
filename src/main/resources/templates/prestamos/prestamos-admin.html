@@ -8,55 +8,41 @@
 	<header th:replace="layout/layout :: header"> </header>
 
 	<div class="jumbotron mx-5 mt-5">
-	
-			<div class="row">
-				<div class="col">
-					<div class="float-left">
-						<h1>[[ #{prestamo.listado} ]]</h1>
-					</div>
-				</div>
-				<hr>
-				<div class="col"></div>
-			</div>
 
+		<div class="row">
+			<div class="col">
+				<div class="float-left">
+					<h1>[[ #{prestamo.listado} ]]</h1>
+				</div>
+			</div>
 			<hr>
+		</div>
 
-			<div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
-				<div class="col">
-					<div class="card text-white bg-secondary mb-3"
-						style="max-width: 20rem;">
-						<div class="card-body">
-							<h4 class="card-title">Total de libros</h4>
-							<h3 class="card-text">
-								<i class="fas fa-book"> </i> [[${totalLibros}]]
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div class="col col-lg">
-					<div class="card text-white bg-secondary mb-3 col-lg"
-						style="max-width: 20rem;">
-						<div class="card-body">
-							<h4 class="card-title">Prestamos finalizados</h4>
-							<h3 class="card-text">
-								<i class="fas fa-book-open"></i>TO-DO [[${totalCopias}]]
-							</h3>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card text-white bg-secondary mb-3"
-						style="max-width: 20rem;">
-						<div class="card-body">
-							<h4 class="card-title">Prestamos activos</h4>
-							<h3 class="card-text">
-								<i class="fas fa-book-reader"></i> TO-DO
-							</h3>
-						</div>
+		<hr>
+
+		<div class="row">
+			<div class="col">
+				<div class="card text-white bg-secondary mb-3">
+					<div class="card-body">
+						<h4 class="card-title">[[#{number.prestamos-fin}]]</h4>
+						<h3 class="card-text">
+							<i class="fas fa-book-open"></i> [[${totalPrestamosFinalizados}]]
+						</h3>
 					</div>
 				</div>
 			</div>
-	
+			<div class="col">
+				<div class="card text-white bg-secondary mb-3">
+					<div class="card-body">
+						<h4 class="card-title">[[#{number.prestamos}]]</h4>
+						<h3 class="card-text">
+							<i class="fas fa-book-reader"></i> [[${totalPrestamosActivos}]]
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 		<br>
 
@@ -82,7 +68,8 @@
 						<td th:text="${prestamo.fechaInicio}"></td>
 						<td th:if="${prestamo.fechaFin == null}">Copia aún no
 							devuelta</td>
-						<td th:if="${!(prestamo.fechaFin == null)}" th:text="${prestamo.fechaFin}"></td>
+						<td th:if="${!(prestamo.fechaFin == null)}"
+							th:text="${prestamo.fechaFin}"></td>
 
 					</tr>
 				</tbody>
