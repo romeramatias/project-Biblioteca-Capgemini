@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import edu.cap.biblioteca.model.Copia;
 import edu.cap.biblioteca.model.Libro;
+import edu.cap.biblioteca.model.Prestamo;
 import edu.cap.biblioteca.service.CopiaService;
 import edu.cap.biblioteca.service.LibroService;
 import edu.cap.biblioteca.service.PrestamoService;
@@ -57,7 +58,7 @@ public class ControladorPrestamo {
 
 		this.prestamosService.guardarPrestamo(libro, copia, usuario);
 
-		return "redirect:/libros";
+		return "redirect:/mis-prestamos";
 	}
 	
 	@GetMapping("/mis-prestamos")
@@ -67,9 +68,22 @@ public class ControladorPrestamo {
 		var usuario = this.usuariosService.buscarUsuario(user.getUsername());
 		var prestamos = this.prestamosService.prestamosPorUsuario(usuario.getIdUsuario());
 		
+		log.info(prestamos.toString());
+		
 		model.addAttribute("prestamos", prestamos);
 		
 		return "prestamos/prestamos-user";
 	}
+	
+	@GetMapping("/mis-prestamos/devolver/{idPrestamo}")
+	public String devolverLibro(Model model, Prestamo prestamo) {
+		log.info("Devolver - Prestamos Controller");
+
+		prestamo = this.prestamosService.buscarPrestamo(prestamo);
+		this.prestamosService.devolucion(prestamo);
+		
+		return "redirect:/mis-prestamos";
+	}
+
 
 }

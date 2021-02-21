@@ -9,76 +9,73 @@
 	<header th:replace="layout/layout :: header"> </header>
 
 	<div class="jumbotron mx-5 mt-5">
-		<div>
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="float-left">
+					<h1>
+						[[ #{copia.listado} ]] <span class="libro"
+							th:text="${libro.titulo}"></span>
+					</h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="float-right mx-2">
+					<a class="btn btn-outline-info"
+						th:href="@{/libros/devolver} + ${libro.idLibro} + @{/copias} + @{/agregar}">[[#{copia.crear}]]</a>
+				</div>
+				<div class="float-right">
+					<a class="btn btn-outline-info" th:href="@{/libros}">[[#{accion.volver}]]</a>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div th:if="${copias == null or copias.empty}">
+			<p class="lead">[[ #{copia.lista-vacia} ]]</p>
+		</div>
+
+		<div th:if="${copias != null and !copias.empty}">
 			<div class="row">
-				<div class="col-sm-8">
-					<div class="float-left">
-						<h1>
-							[[ #{copia.listado} ]] <span class="libro"
-								th:text="${libro.titulo}"></span>
-
-						</h1>
-					</div>
+				<div class="col-8">
+					<table class="table table-hover table-bordered">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">[[ #{copia.id} ]]</th>
+								<th scope="col">[[ #{copia.estado} ]]</th>
+								<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
+									#{accion.eliminar} ]]</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="copia : ${copias}">
+								<td th:text="${copia.idCopia}"></td>
+								<td th:text="${copia.estado}"></td>
+								<td sec:authorize="hasRole('ROLE_ADMIN')"><a
+									class="btn btn-danger"
+									th:href="@{/libros/} + ${libro.idLibro} + @{/copias/} + ${copia.idCopia} + @{/eliminar}"><i
+										class="fas fa-times"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
-				<div class="col-sm-4">
-					<div class="float-right mx-2">
-						<a class="btn btn-outline-info"
-							th:href="@{/libros/} + ${libro.idLibro} + @{/copias} + @{/agregar}">[[#{copia.crear}]]</a>
-					</div>
-					<div class="float-right">
-						<a class="btn btn-outline-info" th:href="@{/libros}">[[#{accion.volver}]]</a>
-					</div>
-				</div>
-			</div>
-
-			<br>
-
-			<div th:if="${copias == null or copias.empty}">
-				<p class="lead">[[ #{copia.lista-vacia} ]]</p>
-			</div>
-
-			<div th:if="${copias != null and !copias.empty}">
-				<div class="row">
-					<div class="col-8">
-						<table class="table table-hover table-bordered">
-							<thead class="thead-dark">
-								<tr>
-									<th scope="col">[[ #{copia.id} ]]</th>
-									<th scope="col">[[ #{copia.estado} ]]</th>
-									<th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">[[
-										#{accion.eliminar} ]]</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="copia : ${copias}">
-									<td th:text="${copia.idCopia}"></td>
-									<td th:text="${copia.estado}"></td>
-									<td sec:authorize="hasRole('ROLE_ADMIN')"><a
-										class="btn btn-danger"
-										th:href="@{/libros/} + ${libro.idLibro} + @{/copias/} + ${copia.idCopia} + @{/eliminar}"><i
-											class="fas fa-times"></i></a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-4">
-						<div class="card text-white bg-secondary mx-auto mb-3"
-							style="max-width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">[[ #{number.copias.biblioteca} ]]</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book"> </i> [[${copiasBiblioteca}]]
-								</h3>
-							</div>
+				<div class="col-4">
+					<div class="card text-white bg-secondary mx-auto mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">[[ #{number.copias.biblioteca} ]]</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book"> </i> [[${copiasBiblioteca}]]
+							</h3>
 						</div>
-						<div class="card text-white bg-secondary mx-auto mb-3"
-							style="max-width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">[[ #{number.copias.prestada} ]]</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book"> </i> [[${copiasPrestadas}]]
-								</h3>
-							</div>
+					</div>
+					<div class="card text-white bg-secondary mx-auto mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">[[ #{number.copias.prestada} ]]</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book"> </i> [[${copiasPrestadas}]]
+							</h3>
 						</div>
 					</div>
 				</div>

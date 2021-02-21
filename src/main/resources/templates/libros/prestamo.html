@@ -9,29 +9,46 @@
 	<header th:replace="layout/layout :: header"> </header>
 
 	<div class="jumbotron mx-5 mt-5">
-		<h1>[[#{prestamo.confirmar}]]</h1>
-		<hr>
 
-		<div class="card bg-light text-center">
-			<div class="card-header">[[#{prestamo.info}]]</div>
-			<div class="card-body">
-				<h5 class="card-title">[[#{prestamo.detalles}]]:</h5>
-				<p class="card-text">
-					<strong>[[#{prestamo.titulo}]] :</strong> <em>[[${libro.titulo}]]</em>
-					<br>
-				
-					<strong>[[#{libro.id}]] :</strong> <em>[[${libro.idLibro}]]</em>
-				<br>
-				
-					<strong>[[#{copia.id}]]:</strong> <em>[[${copiaDisponible.idCopia}]]</em>
-				</p>
-				<p class="card-text">[[#{prestamo.devolucion}]]</p>
-				<a th:href="@{/libros/prestamo/} + ${libro.idLibro} + @{/} + ${copiaDisponible.idCopia} + @{/guardar}"class="btn btn-primary">[[#{prestamo.confirmar}]]</a>
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="float-left">
+					<h1>[[#{prestamo.confirmar}]]</h1>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="float-right">
+					<a class="btn btn-outline-info" th:href="@{/libros}">[[#{accion.volver}]]</a>
+				</div>
 			</div>
 		</div>
 
+		<hr>
 
+		<div th:if="${copiaDisponible != null}">
+			<div class="card bg-light text-center">
+				<div class="card-header">[[#{prestamo.info}]]</div>
+				<div class="card-body">
+					<h5 class="card-title">[[#{prestamo.detalles}]]:</h5>
+					<p class="card-text">
+						<strong>[[#{prestamo.titulo}]] :</strong> <em>[[${libro.titulo}]]</em>
+						<br> <strong>[[#{libro.id}]] :</strong> <em>[[${libro.idLibro}]]</em>
+						<br> <strong>[[#{copia.id}]]:</strong> <em>[[${copiaDisponible.idCopia}]]</em>
+					</p>
+					<p class="card-text">[[#{prestamo.devolucion}]]</p>
+					<a
+						th:href="@{/libros/prestamo/} + ${libro.idLibro} + @{/} + ${copiaDisponible.idCopia} + @{/guardar}"
+						class="btn btn-primary">[[#{prestamo.confirmar}]]</a>
+				</div>
+			</div>
+		</div>
 
+		<div th:if="${copiaDisponible == null}">
+			<p class="lead">
+				Lo sentimos, no tenemos copias disponibles del libro <em><strong>[[${libro.titulo}]]</strong>
+				</em>.
+			</p>
+		</div>
 
 	</div>
 

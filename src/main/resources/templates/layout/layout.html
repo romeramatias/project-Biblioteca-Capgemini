@@ -42,7 +42,7 @@
 						class="nav-item"><a class="nav-link" href="/libros">[[
 							#{layout.libros} ]]</a></li>
 					<li sec:authorize="hasRole('ROLE_USER')" class="nav-item"><a
-						class="nav-link" href="#">[[ #{layout.prestamos-user} ]]</a></li>
+						class="nav-link" href="/mis-prestamos">[[ #{layout.prestamos-user} ]]</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
 						class="nav-link" href="/prestamos">[[
 							#{layout.prestamos-admin} ]]</a></li>

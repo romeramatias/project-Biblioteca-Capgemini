@@ -73,6 +73,19 @@ public class PrestamoServiceImplement implements PrestamoService {
 		this.prestamosRepository.save(prestamo);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Prestamo buscarPrestamo(Prestamo prestamo) {
+		return this.prestamosRepository.findById(prestamo.getIdPrestamo()).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public void devolucion(Prestamo prestamo) {
+		prestamo.setFechaFin(LocalDate.now());
+		prestamo.getCopia().setEstado(EstadoCopia.BIBLIOTECA);
+	}
+
 
 	
 }

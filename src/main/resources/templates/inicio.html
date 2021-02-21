@@ -43,13 +43,11 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="column">
-					<a sec:authorize="isAnonymous()" href="/login"
-						class="btn btn-info btn-block mb-2"
-						style="color: white;">[[#{index.login}]]</a>
-					<p class="lead" style="color: white; font-size: 15px;">[[#{index.parrafo}]].</p>
-				</div>
+			<div>
+				<a sec:authorize="isAnonymous()" href="/login"
+					class="btn btn-info btn-block mb-2" style="color: white;">[[#{index.login}]]</a>
+				<p class="lead" style="color: white; font-size: 15px;">[[#{index.parrafo}]]</p>
+
 			</div>
 		</div>
 	</div>

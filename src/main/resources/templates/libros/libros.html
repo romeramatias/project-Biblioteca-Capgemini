@@ -10,72 +10,87 @@
 		<header th:replace="layout/layout :: header"> </header>
 
 		<div class="jumbotron mx-5 mt-5">
-			<div>
-				<div class="row">
-					<div class="col">
-						<div class="float-left">
-							<h1>[[ #{libro.listado} ]]</h1>
-						</div>
-					</div>
-					<hr>
-					<div class="col">
-						<div class="float-right">
-							<a sec:authorize="hasRole('ROLE_ADMIN')"
-								class="btn
-								btn-outline-info" th:href="@{/libros/agregar}">[[
-								#{libro.crear} ]]</a>
-						</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="float-left">
+						<h1>[[ #{libro.listado} ]]</h1>
 					</div>
 				</div>
 
-				<hr>
-
-				<div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
-					<div class="col">
-						<div class="card text-white bg-secondary mb-3"
-							style="max-width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">[[ #{number.libros} ]]</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book"> </i> [[${totalLibros}]]
-								</h3>
-							</div>
-						</div>
+				<div class="col">
+					<div class="float-right">
+						<a sec:authorize="hasRole('ROLE_ADMIN')"
+							class="btn
+								btn-outline-info"
+							th:href="@{/libros/agregar}">[[ #{libro.crear} ]]</a>
 					</div>
-					<div class="col">
-						<div class="card text-white bg-secondary mb-3"
-							style="max-width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">[[ #{number.copias} ]]</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book-open"></i> [[${totalCopias}]]
-								</h3>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card text-white bg-secondary mb-3"
-							style="max-width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">[[ #{number.prestamos} ]]</h4>
-								<h3 class="card-text">
-									<i class="fas fa-book-reader"></i> [[${totalPrestamosActivos}]]
-								</h3>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<form th:action="@{/libros/buscar(nombre)}" method="get"
-							class="form-inline my-2 my-lg-0">
-							<input class="form-control col-lg-8 mr-sm-2" type="search"
-								name="nombre" id="nombre" th:placeholder="#{libro.buscar}"
-								aria-label="Search">
-							<button class="btn btn-outline-info my-2 col-lg-3 my-sm-0" type="submit">[[#{accion.buscar}]]</button>
-						</form>
-					</div>
-
 				</div>
 			</div>
+
+			<hr>
+
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
+				<div class="col">
+					<div class="card text-white bg-secondary mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">[[ #{number.libros} ]]</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book"> </i> [[${totalLibros}]]
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card text-white bg-secondary mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">[[ #{number.copias} ]]</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book-open"></i> [[${totalCopias}]]
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card text-white bg-secondary mb-3"
+						style="max-width: 20rem;">
+						<div class="card-body">
+							<h4 class="card-title">[[ #{number.prestamos} ]]</h4>
+							<h3 class="card-text">
+								<i class="fas fa-book-reader"></i> [[${totalPrestamosActivos}]]
+							</h3>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<form th:action="@{/libros/buscar(nombre)}" method="get"
+						class="form-inline my-2 my-lg-0">
+						<input class="form-control col-lg-9 mr-sm-2" type="search"
+							name="nombre" id="nombre" th:placeholder="#{libro.buscar}"
+							aria-label="Search">
+						<button class="btn btn-outline-info my-2 col-lg my-sm-0"
+							type="submit">[[#{accion.buscar}]]</button>
+					</form>
+				</div>
+			</div>
+
+
+			<div sec:authorize="hasRole('ROLE_USER')" class="row">
+				<div class="col">
+					<form th:action="@{/libros/buscar(nombre)}" method="get"
+						class="form-inline my-2 my-lg-0">
+						<input class="form-control col-lg-9 mr-sm-2" type="search"
+							name="nombre" id="nombre" th:placeholder="#{libro.buscar}"
+							aria-label="Search">
+						<button class="btn btn-outline-info my-2 col-lg my-sm-0"
+							type="submit">[[#{accion.buscar}]]</button>
+					</form>
+				</div>
+			</div>
+
+
 
 			<br>
 
@@ -119,9 +134,10 @@
 								class="btn btn-outline-primary"
 								th:href="@{/libros/} + ${libro.idLibro} + @{/copias}">[[
 									#{libro.copias} ]]</a></td>
-							<td sec:authorize="hasRole('ROLE_USER')">
-							
-							<a class="btn btn-primary" th:href="@{/libros/prestamo/} + ${libro.idLibro}">[[ #{libro.prestamo} ]]</a></td>
+							<td sec:authorize="hasRole('ROLE_USER')"><a
+								class="btn btn-primary"
+								th:href="@{/libros/prestamo/} + ${libro.idLibro}">[[
+									#{libro.prestamo} ]]</a></td>
 						</tr>
 					</tbody>
 				</table>

@@ -8,6 +8,75 @@
 <body>
 	<header th:replace="layout/layout :: header"> </header>
 
+	<div class="jumbotron mx-5 mt-5">
+
+		<div class="row">
+			<div class="col">
+				<div class="float-left">
+					<h1>[[#{prestamo.mis-prestamos}]]</h1>
+				</div>
+			</div>
+			<hr>
+			<div class="col">
+				<div class="card text-white bg-secondary mb-3">
+					<div class="card-body">
+						<h4 class="card-title">[[#{number.prestamos}]]</h4>
+						<h3 class="card-text">
+							<i class="fas fa-book-reader"></i> TO-DO
+						</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card text-white bg-secondary mb-3">
+					<div class="card-body">
+						<h4 class="card-title">[[#{number.prestamos-disponibles}]]</h4>
+						<h3 class="card-text">
+							<i class="fas fa-address-book"></i> TO-DO
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<div th:if="${prestamos != null and !prestamos.empty}">
+			<table class="table table-hover table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">[[ #{prestamo.id} ]]</th>
+						<th scope="col">[[ #{prestamo.lector} ]]</th>
+						<th scope="col">[[ #{prestamo.libro} ]]</th>
+						<th scope="col">[[ #{prestamo.copia} ]]</th>
+						<th scope="col">[[ #{prestamo.fecha-inicio} ]]</th>
+						<th scope="col">[[ #{prestamo.fecha-fin} ]]</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="prestamo : ${prestamos}">
+						<td th:text="${prestamo.idPrestamo}"></td>
+						<td
+							th:text="${prestamo.usuario.nombre} + ' ' + ${prestamo.usuario.apellido}"></td>
+						<td th:text="${prestamo.libro.titulo}"></td>
+						<td th:text="${prestamo.copia.idCopia}"></td>
+						<td th:text="${prestamo.fechaInicio}"></td>
+						<td th:if="${prestamo.fechaFin == null}"><a
+							class="btn btn-primary" th:href="@{/mis-prestamos/devolver/} + ${prestamo.idPrestamo}"> [[#{prestamo.devolver}]]</a></td>
+						<td th:if="${!(prestamo.fechaFin == null)}"
+							th:text="${prestamo.fechaFin}"></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${prestamos == null or prestamos.empty}">
+			<p class="lead">[[ #{prestamo.lista-vacia} ]]</p>
+		</div>
+	</div>
+
+	<br>
+	<br>
 
 	<footer th:replace="layout/layout :: footer"> </footer>
 

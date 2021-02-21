@@ -10,9 +10,8 @@
 	<div class="jumbotron mx-5 mt-5">
 		<h2>TO-DO USER DATA</h2>
 
-		<p>[[${usuario.nombre}]]</p>
-		<p th:text="${usuario.apellido}"></p>
-		<p th:text="${usuario.password}"></p>
+		<p> Nombre: [[${usuario.nombre}]]</p>
+		<p> Apellido: [[${usuario.apellido}]]</p>
 	</div>
 
 	<footer th:replace="layout/layout :: footer"> </footer>

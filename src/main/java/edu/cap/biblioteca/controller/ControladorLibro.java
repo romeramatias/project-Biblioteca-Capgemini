@@ -56,7 +56,7 @@ public class ControladorLibro {
 	
 	@GetMapping("/libros/buscar")
 	public String buscarLibros(Model model, @RequestParam String nombre) {
-		log.info("Inicio - Libro Controller");
+		log.info("Buscar - Libro Controller");
 		
 		var libros = librosService.buscarLibros(nombre);
 		var totalLibros = libros.size();

@@ -19,6 +19,10 @@ public interface PrestamoService {
 
 	List<Prestamo> prestamosActivos();
 	
+	Prestamo buscarPrestamo(Prestamo prestamo);
+	
 	void guardarPrestamo(Libro libro, Copia copia, Usuario usuario);
+
+	void devolucion(Prestamo prestamo);
 
 }
