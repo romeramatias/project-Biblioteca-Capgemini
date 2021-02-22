@@ -42,10 +42,10 @@ public class PrestamoServiceImplement implements PrestamoService {
 				prestamos.add(prestamo);
 			}
 		}
-		
+
 		return prestamos;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public List<Prestamo> prestamosActivosPorUsuario(Long idUsuario) {
@@ -57,7 +57,7 @@ public class PrestamoServiceImplement implements PrestamoService {
 				prestamos.add(prestamo);
 			}
 		}
-				
+
 		return prestamos;
 	}
 
@@ -66,29 +66,28 @@ public class PrestamoServiceImplement implements PrestamoService {
 	public List<Prestamo> prestamosActivos() {
 		var allPrestamos = this.listarPrestamos();
 		List<Prestamo> prestamos = new ArrayList<>();
-		
+
 		for (Prestamo prestamo : allPrestamos) {
 			if (prestamo.getFechaFin() == null) {
 				prestamos.add(prestamo);
 			}
 		}
-		
+
 		return prestamos;
 	}
-	
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Prestamo> prestamosFinalizados() {
 		var allPrestamos = this.listarPrestamos();
 		List<Prestamo> prestamos = new ArrayList<>();
-		
+
 		for (Prestamo prestamo : allPrestamos) {
 			if (prestamo.getFechaFin() != null) {
 				prestamos.add(prestamo);
 			}
 		}
-		
+
 		return prestamos;
 	}
 
@@ -100,7 +99,7 @@ public class PrestamoServiceImplement implements PrestamoService {
 		prestamo.setUsuario(usuario);
 		prestamo.setFechaInicio(LocalDate.now());
 		copia.setEstado(EstadoCopia.PRESTADO);
-		
+
 		this.prestamosRepository.save(prestamo);
 	}
 
@@ -117,7 +116,27 @@ public class PrestamoServiceImplement implements PrestamoService {
 		prestamo.getCopia().setEstado(EstadoCopia.BIBLIOTECA);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean hayPrestamosPorCopia(Long idCopia) {
+		var allPrestamos = this.listarPrestamos();
+		var index = 0;
+		boolean tienePrestamos = false;
 
+		while (index < allPrestamos.size() && !tienePrestamos) {
+			if (allPrestamos.get(index).getCopia().getIdCopia().equals(idCopia)) {
+				tienePrestamos = true;
+			}
+			index++;
+		}
 
-	
+		return tienePrestamos;
+	}
+
+	@Override
+	@Transactional
+	public void eliminar(Prestamo prestamo) {
+		this.prestamosRepository.delete(prestamo);
+	}
+
 }

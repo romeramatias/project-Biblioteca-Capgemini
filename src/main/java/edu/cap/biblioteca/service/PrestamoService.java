@@ -21,6 +21,8 @@ public interface PrestamoService {
 	
 	List<Prestamo> prestamosFinalizados();
 	
+	Boolean hayPrestamosPorCopia(Long idCopia);
+	
 	Prestamo buscarPrestamo(Prestamo prestamo);
 	
 	void guardarPrestamo(Libro libro, Copia copia, Usuario usuario);
@@ -28,5 +30,7 @@ public interface PrestamoService {
 	void devolucion(Prestamo prestamo);
 
 	List<Prestamo> prestamosActivosPorUsuario(Long idUsuario);
+
+	void eliminar(Prestamo prestamo);
 
 }

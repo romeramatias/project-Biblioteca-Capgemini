@@ -46,12 +46,21 @@ public class ControladorPrestamo {
 		var prestamos = this.prestamosService.listarPrestamos();
 		var totalPrestamosActivos = this.prestamosService.prestamosActivos().size();
 		var totalPrestamosFinalizados = this.prestamosService.prestamosFinalizados().size();
-		
+
 		model.addAttribute("prestamos", prestamos);
 		model.addAttribute("totalPrestamosActivos", totalPrestamosActivos);
 		model.addAttribute("totalPrestamosFinalizados", totalPrestamosFinalizados);
 
 		return "prestamos/prestamos-admin";
+	}
+
+	@GetMapping("/prestamos/eliminar/{idPrestamo}")
+	public String eliminar(Prestamo prestamo) {
+		log.info("Eliminar + ID Path - Prestamo Controller");
+
+		this.prestamosService.eliminar(prestamo);
+
+		return "redirect:/prestamos";
 	}
 
 	@GetMapping("/libros/prestamo/{idLibro}/{idCopia}/guardar")
@@ -112,8 +121,8 @@ public class ControladorPrestamo {
 	public RedirectView linkLibro(Model model, Prestamo prestamo) {
 		log.info("PDF - Prestamos Controller");
 
-	    RedirectView redirectView = new RedirectView();
-		
+		RedirectView redirectView = new RedirectView();
+
 		prestamo = this.prestamosService.buscarPrestamo(prestamo);
 		var titulo = prestamo.getLibro().getTitulo();
 		titulo = titulo.replace(" ", "+");

@@ -51,10 +51,20 @@
 							<tr th:each="copia : ${copias}">
 								<td th:text="${copia.idCopia}"></td>
 								<td th:text="${copia.estado}"></td>
-								<td sec:authorize="hasRole('ROLE_ADMIN')"><a
-									class="btn btn-danger"
+
+								<td
+									th:if="${#strings.toString(copia.estado)} == 'BIBLIOTECA' and !${prestamosService.hayPrestamosPorCopia(copia.idCopia)}"><a
+									class="btn btn-danger btn-block "
 									th:href="@{/libros/} + ${libro.idLibro} + @{/copias/} + ${copia.idCopia} + @{/eliminar}"><i
-										class="fas fa-times"></i></a></td>
+										class="fas fa-times"></i> [[#{copia.eliminar}]] </a></td>
+
+								<td
+									th:if="${#strings.toString(copia.estado)} == 'BIBLIOTECA' and ${prestamosService.hayPrestamosPorCopia(copia.idCopia)}"><a
+									class="btn btn-warning btn-block">[[#{copia.historial}]]</a></td>
+
+								<td th:if="${#strings.toString(copia.estado)} == 'PRESTADO'"><a
+									class="btn btn-warning btn-block">[[#{copia.prestada}]]</a></td>
+
 							</tr>
 						</tbody>
 					</table>

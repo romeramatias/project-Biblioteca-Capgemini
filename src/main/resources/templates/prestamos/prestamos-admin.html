@@ -66,10 +66,15 @@
 						<td th:text="${prestamo.libro.titulo}"></td>
 						<td th:text="${prestamo.copia.idCopia}"></td>
 						<td th:text="${prestamo.fechaInicio}"></td>
-						<td th:if="${prestamo.fechaFin == null}">Copia aún no
-							devuelta</td>
-						<td th:if="${!(prestamo.fechaFin == null)}"
-							th:text="${prestamo.fechaFin}"></td>
+						<td th:if="${prestamo.fechaFin == null}"><a
+							class="btn btn-warning btn-block"> [[#{prestamo.copia-prestada}]] </a></td>
+						<td th:if="${!(prestamo.fechaFin == null)}">
+							[[${prestamo.fechaFin}]] <a
+							th:href="@{/prestamos/eliminar/} + ${prestamo.idPrestamo}"
+							class="btn btn-danger float-right" style="color: white;"> <i
+								class="fas fa-times"></i> [[#{prestamo.eliminar}]]
+						</a>
+						</td>
 
 					</tr>
 				</tbody>

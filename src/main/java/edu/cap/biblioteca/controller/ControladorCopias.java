@@ -14,6 +14,7 @@ import edu.cap.biblioteca.model.EstadoCopia;
 import edu.cap.biblioteca.model.Libro;
 import edu.cap.biblioteca.service.CopiaService;
 import edu.cap.biblioteca.service.LibroService;
+import edu.cap.biblioteca.service.PrestamoService;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -26,13 +27,17 @@ public class ControladorCopias {
 	@Autowired
 	LibroService librosService;
 
+	@Autowired
+	PrestamoService prestamosService;
+
 	@GetMapping("/libros/{idLibro}/copias")
 	public String inicio(Libro libro, Model model) {
 		log.info("Inicio - Copias Controller");
 
 		var copias = this.copiasService.listarCopiasPorLibro(libro.getIdLibro());
 		libro = this.librosService.buscarLibro(libro);
-		var copiasBiblioteca = this.copiasService.listarCopiasPorEstado(libro.getIdLibro(), EstadoCopia.BIBLIOTECA).size();
+		var copiasBiblioteca = this.copiasService.listarCopiasPorEstado(libro.getIdLibro(), EstadoCopia.BIBLIOTECA)
+				.size();
 		var copiasPrestadas = this.copiasService.listarCopiasPorEstado(libro.getIdLibro(), EstadoCopia.PRESTADO).size();
 
 		model.addAttribute("copiasBiblioteca", copiasBiblioteca);
@@ -40,6 +45,7 @@ public class ControladorCopias {
 		model.addAttribute("libro", libro);
 		model.addAttribute("libro", libro);
 		model.addAttribute("copias", copias);
+		model.addAttribute("prestamosService", prestamosService);
 
 		return "copias/copias";
 	}

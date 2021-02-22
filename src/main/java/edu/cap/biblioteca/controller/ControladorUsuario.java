@@ -24,17 +24,9 @@ public class ControladorUsuario {
 	@GetMapping("/usuario")
 	public String inicio(Model model, @AuthenticationPrincipal User user) {
 		log.info("Index - Inicio Controller");
-		log.info("Usuario logeado" + user);
-
-		// El de admin que le muestre un dashboard de todo
-		// y el de user algo para solicitar prestamos, ver estado de
-		// cuenta
-		// ver los libros
-		//var roles = user.getAuthorities();
-
-		log.info(user.getAuthorities().toString());
 
 		var usuario = this.usuarioService.buscarUsuario(user.getUsername());
+		
 		model.addAttribute("usuario", usuario);
 
 		return "usuarios/user-data";
